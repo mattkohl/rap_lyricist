@@ -1,0 +1,3 @@
+setuptools
+python-termstyle >=0.1.7
+colorama

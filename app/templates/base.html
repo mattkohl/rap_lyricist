@@ -1,0 +1,95 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Rap Lyricist - A Rap Lyric Generator{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icon/favicon.ico') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Rap Lyricist" />
+    <meta property="og:description" content="A Markov chain hip-hop lyric generator" />
+    <meta property="og:url" content="http://www.raplyricist.com" />
+    <meta property="og:site_name" content="Rap Lyricist" />
+    <meta property="og:image" content="http://www.raplyricist.com{{ url_for('static', filename='img/og_rap_lyricist.png')}}" />
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:description" content="A Markov chain hip-hop lyric generator"/>
+    <meta name="twitter:title" content="Rap Lyricist"/>
+    <meta name="twitter:site" content="@rap_lyricist"/>
+    <meta name="twitter:domain" content="Rap Lyricist"/>
+    <meta name="twitter:image" content="http://www.raplyricist.com{{ url_for('static', filename='img/og_rap_lyricist.png')}}"/>
+{% endblock %}
+
+{% block body %}
+    {% block navbar %}
+        <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a id="logo" class="logo navbar-brand page-scroll" href="#page-top"> RAP LYRICIST </a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                    <ul class="nav navbar-nav">
+                        <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                        <li class="hidden">
+                            <a href="#page-top"></a>
+                        </li>
+                        <li id="statsButton">
+                            <a class="page-scroll" href="#stats">Stats</a>
+                        </li>
+                        <li>
+                            <a class="page-scroll" href="#about">About</a>
+                        </li>
+                        <li>
+                            <a id="twitterbutton" href="https://twitter.com/rap_lyricist" target="_blank"><i class="fa fa-twitter"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+    {% endblock %}
+
+    {% block content %}{% endblock %}
+
+    <!-- Footer -->
+    <footer class="container">
+        <div class="container text-center">
+            <h6>Copyright &copy; RAP LYRICIST 2015</h6>
+        </div>
+    </footer>
+    {% block scripts %}
+        {{ super() }}
+        <!-- Plugin JavaScript -->
+        <script src="{{ url_for('static', filename='js/jquery.easing.min.js') }}"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="{{ url_for('static', filename='js/grayscale.js') }}"></script>
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-67065952-1', 'auto');
+          ga('send', 'pageview');
+
+        </script>
+    {% endblock %}
+{% endblock %}
+
+{% block body_attribs %}
+    id="page-top" data-spy="scroll" data-target=".navbar-fixed-top"
+{% endblock %}
+

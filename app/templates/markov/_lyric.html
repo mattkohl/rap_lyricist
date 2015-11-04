@@ -1,0 +1,23 @@
+
+<!-- Generated Lyric goes here -->
+<header class="intro">
+    <section id="lyric" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2 id="lyric_text">{{ lyric.get_text() }}</h2>
+                <form action="" method="POST" name="vote">
+                    <input name="lyric" value="{{ lyric.get_text() }}" class="hidden"/>
+                    <input name="lyric_id" value="{{ lyric_id }}" class="hidden"/>
+                        <span class="wack enlarge">
+                            <i class="fa fa-thumbs-down"></i>
+                            <input name="negative" class="btn btn-lg" type="submit" value="wack"></input>
+                        </span>
+                        <span class="dope enlarge">
+                            <input name="positive" class="btn btn-lg" type="submit" value="dope"></input>
+                            <i class="fa fa-thumbs-up"></i>
+                        </span>
+                </form>
+            </div>
+        </div>
+    </section>
+</header>

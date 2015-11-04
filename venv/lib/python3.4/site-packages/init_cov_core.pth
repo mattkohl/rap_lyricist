@@ -1,0 +1,1 @@
+import os; 'COV_CORE_SOURCE' in os.environ and __import__('cov_core_init').init()

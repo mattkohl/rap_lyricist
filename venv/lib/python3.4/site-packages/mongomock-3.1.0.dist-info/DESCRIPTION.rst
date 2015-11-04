@@ -1,0 +1,3 @@
+Fake pymongo stub for testing simple MongoDB-dependent code
+
+

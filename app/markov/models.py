@@ -131,7 +131,7 @@ class Lyric:
         else:
             return 0
 
-    def jsonify(self):
+    def get_json(self):
         d = {
             'author': self.author,
             'tokens': self.tokens,

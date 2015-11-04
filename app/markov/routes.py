@@ -5,11 +5,12 @@ import threading
 from datetime import datetime, timedelta
 from bson.objectid import ObjectId
 from flask import render_template, redirect, url_for, \
-    request, current_app, make_response, abort
+    request, current_app, make_response, abort, jsonify
 from .models import Lyric
 from .loaders import ExampleLoader
 from . import markov, tweet
 from .. import db
+from pprint import pprint
 
 
 lyrics = db['lyrics']
@@ -34,11 +35,12 @@ def index():
     elif request.method == 'GET':
 
         lyric = Lyric()
-        jsonified = lyric.jsonify()
-        lyric_id = lyrics.insert(jsonified)
+        lyric_json = lyric.get_json()
+        lyric_id = lyrics.insert(lyric_json)
+        lyric_json['_id'] = str(lyric_id)
+
         return render_template('markov/index.html',
-                               lyric=lyric,
-                               lyric_id=lyric_id,
+                               lyric=lyric_json,
                                stats=stats())
 
 

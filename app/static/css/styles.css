@@ -389,6 +389,10 @@ text {
     font-size: 2em;
 }
 
+.api-upvote:visited, .api-downvote:visited {
+    color: #fff;
+}
+
 
 /*
 --------------------------------------------------------------

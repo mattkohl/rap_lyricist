@@ -1,0 +1,58 @@
+<script>
+    function lyricsAPI(url, method, data, success, error) {
+        if (!data)
+            data = {};
+        requestUrl = location.protocol + '/' + url;
+        $.ajax({
+            url: requestUrl,
+            type: method,
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            success: success,
+            error: error
+        });
+    }
+    $('.api-upvote').click(function() {
+        id = $(this).attr('data-id');
+        url = 'upvote/' + id;
+
+        lyricsAPI('upvote/' + id, 'PUT', {}, updateValues(),
+        function(jqXHR, textStatus, errorThrown) {
+            alert('Error: ' + errorThrown);
+        });
+        return false;
+    });
+    $('.api-downvote').click(function() {
+        id = $(this).attr('data-id');
+        url = 'downvote/' + id;
+
+        lyricsAPI('downvote/' + id, 'PUT', {}, updateValues(),
+        function(jqXHR, textStatus, errorThrown) {
+            alert('Error: ' + errorThrown);
+        });
+        return false;
+    });
+    function updateValues() {
+        var $lyricText = $('#lyric_text'),
+            $wackButton = $('.wack'),
+            $dopeButton = $('.dope'),
+            $upvote = $('.api-upvote'),
+            $downvote = $('.api-downvote');
+
+        $lyricText.fadeOut();
+        $wackButton.fadeOut();
+        $dopeButton.fadeOut();
+
+        $.getJSON(location.protocol + '/getNewLyric', function(data) {
+            $lyricText.html(data.text).fadeIn();
+            $wackButton.fadeIn();
+            $dopeButton.fadeIn();
+            $upvote.attr('data-id', data._id);
+            $downvote.attr('data-id', data._id);
+        },
+        function(jqXHR, textStatus, errorThrown) {
+            alert('Error: ' + errorThrown);
+        });
+        return false;
+    }
+</script>

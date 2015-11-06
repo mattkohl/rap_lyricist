@@ -5,18 +5,14 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2 id="lyric_text">{{ lyric.text }}</h2>
-                <form action="" method="POST" name="vote">
-                    <input name="lyric" value="{{ lyric.text }}" class="hidden"/>
-                    <input name="lyric_id" value="{{ lyric._id }}" class="hidden"/>
-                        <span class="wack enlarge">
-                            <i class="fa fa-thumbs-down"></i>
-                            <input name="negative" class="btn btn-lg" type="submit" value="wack"></input>
-                        </span>
-                        <span class="dope enlarge">
-                            <input name="positive" class="btn btn-lg" type="submit" value="dope"></input>
-                            <i class="fa fa-thumbs-up"></i>
-                        </span>
-                </form>
+                <span class="wack enlarge">
+                    <i class="fa fa-thumbs-down"></i>
+                    <a href="#" class="btn btn-lg api-downvote" data-id="{{ lyric._id }}">wack</a>
+                </span>
+                <span class="dope enlarge">
+                    <a href="#" class="btn btn-lg api-upvote" data-id="{{ lyric._id }}">dope</a>
+                    <i class="fa fa-thumbs-up"></i>
+                </span>
             </div>
         </div>
     </section>

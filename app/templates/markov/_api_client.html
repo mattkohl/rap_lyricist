@@ -5,7 +5,7 @@
     function lyricsAPI(url, method, data, success, error) {
         if (!data)
             data = {};
-        requestUrl = $SCRIPT_ROOT + '/' + url;
+        requestUrl = '/' + url;
         $.ajax({
             url: requestUrl,
             type: method,
@@ -46,7 +46,7 @@
         $wackButton.fadeOut();
         $dopeButton.fadeOut();
 
-        $.getJSON($SCRIPT_ROOT + '/getNewLyric', function(data) {
+        $.getJSON('/getNewLyric', function(data) {
             $lyricText.html(data.text).fadeIn();
             $wackButton.fadeIn();
             $dopeButton.fadeIn();

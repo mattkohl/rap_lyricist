@@ -1,11 +1,8 @@
-<script type=text/javascript>
-  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-</script>
 <script>
     function lyricsAPI(url, method, data, success, error) {
         if (!data)
             data = {};
-        requestUrl = '/' + url;
+        requestUrl = $SCRIPT_ROOT + '/' + url;
         $.ajax({
             url: requestUrl,
             type: method,
@@ -46,7 +43,7 @@
         $wackButton.fadeOut();
         $dopeButton.fadeOut();
 
-        $.getJSON('/getNewLyric', function(data) {
+        $.getJSON($SCRIPT_ROOT + '/getNewLyric', function(data) {
             $lyricText.html(data.text).fadeIn();
             $wackButton.fadeIn();
             $dopeButton.fadeIn();

@@ -59,14 +59,14 @@ def get_vote_count(lyric_id):
     record = lyrics.find_one({'_id': lyric_id})
     if record:
         upvotes, downvotes = record['upvotes'], record['downvotes']
-        return jsonify({'status': 'ok', 'upvotes': upvotes, 'downvotes': downvotes})
+        return make_response(jsonify({'status': 'ok', 'upvotes': upvotes, 'downvotes': downvotes}), 200)
     else:
-        return jsonify({'status': 'not found'})
+        return make_response(jsonify({'status': 'not found'}), 404)
 
 
 @markov.route('/getNewLyric')
 def get_new_lyric():
-    return jsonify(create_lyric())
+    return make_response(jsonify(create_lyric()), 200)
 
 
 @markov.route('/sitemap.xml', methods=['GET'])

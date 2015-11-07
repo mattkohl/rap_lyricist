@@ -1,5 +1,4 @@
 pymongo
 flask
 flask-bootstrap
-flask-wtf
 twitter

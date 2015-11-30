@@ -149,14 +149,14 @@ a:focus {
 }
 
 .wack:hover {
-    color: red;
+    /*color: red;*/
     /*-webkit-transition: background .3s ease-in-out;*/
     /*-moz-transition: background .3s ease-in-out;*/
     /*transition: background .3s ease-in-out;*/
 }
 
 .dope:hover {
-    color: green;
+    /*color: green;*/
     /*-webkit-transition: background .3s ease-in-out;*/
     /*-moz-transition: background .3s ease-in-out;*/
     /*transition: background .3s ease-in-out;*/
@@ -174,11 +174,11 @@ a:focus {
 .intro {
     display: table;
     width: 100%;
-    height: auto;
+    height: 100%;
     padding: 100px 0;
     text-align: center;
     color: #fff;
-    background: url(../img/intro-bg.jpg) no-repeat bottom center scroll;
+    background: url(../img/intro-bg.jpg) no-repeat center center scroll;
     background-color: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -424,7 +424,6 @@ Media Queries Aplenty
 
 @media(min-width:768px) {
     .intro {
-        height: 100%;
         padding: 0;
     }
 

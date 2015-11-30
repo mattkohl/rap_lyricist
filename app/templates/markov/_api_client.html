@@ -5,7 +5,6 @@
         requestUrl = $SCRIPT_ROOT + '/' + url;
         $.ajax({
             url: requestUrl,
-            cache: false,
             type: method,
             data: JSON.stringify(data),
             contentType: 'application/json',
@@ -13,6 +12,9 @@
             error: error
         });
     }
+    $(document).ready(function() {
+      $.ajaxSetup({ cache: false });
+    });
     $('.api-upvote').click(function() {
         id = $(this).attr('data-id');
         url = 'upvote/' + id;

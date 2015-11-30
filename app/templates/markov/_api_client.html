@@ -5,6 +5,7 @@
         requestUrl = $SCRIPT_ROOT + '/' + url;
         $.ajax({
             url: requestUrl,
+            cache: false,
             type: method,
             data: JSON.stringify(data),
             contentType: 'application/json',

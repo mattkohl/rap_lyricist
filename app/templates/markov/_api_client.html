@@ -40,11 +40,17 @@
             $wackButton = $('.wack'),
             $dopeButton = $('.dope'),
             $upvote = $('.api-upvote'),
-            $downvote = $('.api-downvote');
+            $downvote = $('.api-downvote'),
+            $donut = $('#donut'),
+            $statsTotal =  $('#stats_total'),
+            $statsUpCount = $('#stats_up_count');
 
         $lyricText.fadeOut();
         $wackButton.fadeOut();
         $dopeButton.fadeOut();
+        $donut.fadeOut();
+        $statsTotal.fadeOut();
+        $statsUpCount.fadeOut();
 
         $.getJSON($SCRIPT_ROOT + '/getNewLyric', {}, function(data) {
             $lyricText.html(data.text).fadeIn();
@@ -56,6 +62,24 @@
         function(jqXHR, textStatus, errorThrown) {
             alert('Error: ' + errorThrown);
         });
+
+        $.getJSON($SCRIPT_ROOT + '/getStats', {}, function(data) {
+            $statsTotal.html(data.totalCount).fadeIn();
+            $statsUpCount.html(data.upCount).fadeIn();
+            $donut.children("svg:first").remove();
+            $donut.fadeIn();
+            drawDonutChart(
+                '#donut',
+                data.percentage,
+                230,
+                230,
+                ".35em"
+            );
+        },
+        function(jqXHR, textStatus, errorThrown) {
+            alert('Error: ' + errorThrown);
+        });
+
         return false;
     }
 </script>

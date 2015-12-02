@@ -69,6 +69,11 @@ def get_new_lyric():
     return make_response(jsonify(create_lyric()), 200)
 
 
+@markov.route('/getStats')
+def get_stats():
+    return make_response(jsonify(stats()), 200)
+
+
 @markov.route('/sitemap.xml', methods=['GET'])
 def sitemap():
     """Generate sitemap.xml. Makes a list of urls and date modified."""
@@ -110,4 +115,12 @@ def stats():
     total = num_ups + num_downs
     percentage = round((num_ups / total), 4) * 100
     rounded = int(percentage)
-    return {'ups': ups, 'downs': downs, 'total': total, 'rounded': rounded, 'percentage': percentage}
+    return {
+        'ups': ups,
+        'downs': downs,
+        'upCount': len(ups),
+        'downCount': len(downs),
+        'totalCount': total,
+        'rounded': rounded,
+        'percentage': percentage
+    }

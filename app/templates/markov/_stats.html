@@ -1,17 +1,17 @@
 <!-- Stats Section -->
 <section id="stats" class="container content-section text-center">
     <div class="row">
-        <h3>I've generated {{ stats.total }} lyrics</h3>
+        <h3>I've generated <span id="stats_total">{{ stats.totalCount }}</span> lyrics</h3>
 
         <div class="col-lg-8 col-lg-offset-2">
             <div id="donut" data-donut="{{ stats.percentage }}"/>
         </div>
-        <h3>{{ stats.ups|count }} were <strong class="dope">dope</strong></h3>
+        <h3><span id="stats_up_count">{{ stats.upCount }}</span> were <strong class="dope">dope</strong></h3>
     </div>
 
     <script>
         var duration = 1500,
-                transition = 200;
+            transition = 200;
 
         drawDonutChart(
                 '#donut',

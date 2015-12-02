@@ -49,8 +49,6 @@
         $wackButton.fadeOut();
         $dopeButton.fadeOut();
         $donut.fadeOut();
-        $statsTotal.fadeOut();
-        $statsUpCount.fadeOut();
 
         $.getJSON($SCRIPT_ROOT + '/getNewLyric', {}, function(data) {
             $lyricText.html(data.text).fadeIn();

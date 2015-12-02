@@ -82,7 +82,7 @@ def sitemap():
     age = time_diff.strftime('%Y-%m-%d')
     # static pages
     for rule in current_app.url_map.iter_rules():
-        if "GET" in rule.methods and len(rule.arguments) == 0 and 'getNewLyric' not in rule.rule:
+        if "GET" in rule.methods and len(rule.arguments) == 0 and 'getNewLyric' not in rule.rule and 'getStats' not in rule.rule:
             pages.append(
                 [rule.rule, age]
             )

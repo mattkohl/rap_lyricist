@@ -113,14 +113,14 @@ def stats():
     downs = sorted([result['timestamp'] for result in db.lyrics.find({'author': 'rap_lyricist', 'downvotes': 1})])
     num_ups, num_downs = len(ups), len(downs)
     total = num_ups + num_downs
-    percentage = round((num_ups / total), 4) * 100
-    rounded = int(percentage)
+    unrounded = (num_ups / total) * 100
+    percentage = round(unrounded, 4)
     return {
         'ups': ups,
         'downs': downs,
         'upCount': len(ups),
         'downCount': len(downs),
         'totalCount': total,
-        'rounded': rounded,
+        'unrounded': unrounded,
         'percentage': percentage
     }

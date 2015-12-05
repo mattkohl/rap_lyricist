@@ -4,7 +4,8 @@ import os
 import json
 from datetime import datetime
 from config import APP_STATIC
-from .. import db
+from app import db
+
 
 begin_chains = db['begins']
 end_chains = db['ends']
@@ -91,7 +92,7 @@ class JsonLoader(Loader):
             return {}
 
     def process_lines(self):
-        print(len(self.data['lyrics']), "objects to process.")
+        print(len(self.data['lyrics']), "json objects to process.")
         print("Let's do this.")
         index = 0
         for lyric in self.data['lyrics']:
@@ -113,7 +114,6 @@ class JsonLoader(Loader):
                 lyric_id = lyrics.insert(lyric)
                 self.line_chains(tokens)
                 print("Processed:", lyric_id, "--", tokens)
-                break
 
 
 if __name__ == "__main__":

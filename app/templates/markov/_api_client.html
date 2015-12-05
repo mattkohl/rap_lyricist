@@ -23,6 +23,7 @@
         function(jqXHR, textStatus, errorThrown) {
             alert('Error: ' + errorThrown);
         });
+        ga('send', 'pageview');
         return false;
     });
     $('.api-downvote').click(function() {
@@ -33,6 +34,7 @@
         function(jqXHR, textStatus, errorThrown) {
             alert('Error: ' + errorThrown);
         });
+        ga('send', 'pageview');
         return false;
     });
     function updateValues() {

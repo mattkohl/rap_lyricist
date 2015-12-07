@@ -1,0 +1,7 @@
+# https://travis-ci.org/mattkohl/rap_lyricist
+language: python
+
+python:
+    - 3.4
+
+script: nosetests

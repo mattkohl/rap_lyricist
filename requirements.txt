@@ -2,3 +2,4 @@ pymongo
 flask
 flask-bootstrap
 twitter
+jsonschema

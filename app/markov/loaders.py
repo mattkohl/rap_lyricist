@@ -67,18 +67,32 @@ class JsonLoader(Loader):
     SCHEMA = {
         "type": "object",
         "properties": {"lyrics": {
+            "id": "lyrics",
             "type": "array",
             "items": [{
                 "type": "object",
                 "properties": {
                     "tokens": {
+                        "id": "tokens",
                         "type": "array",
                         "items": [{"type": "string"}]
                         },
-                    "author": {"type": "string"}
-                }
+                    "author": {
+                        "id": "author",
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": False,
+                "required": [
+                    "tokens",
+                    "author"
+                ]
             }]
-        }}
+        }},
+        "additionalProperties": False,
+        "required": [
+            "lyrics",
+        ]
     }
 
     def __init__(self, source_json):

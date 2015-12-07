@@ -5,6 +5,7 @@ import json
 from datetime import datetime
 from config import APP_STATIC
 from app import db
+from jsonschema import validate
 
 
 begin_chains = db['begins']
@@ -63,20 +64,25 @@ class ExampleLoader(Loader):
 
 class JsonLoader(Loader):
 
-    def __init__(self, source_json):
-        """
-        source_json schema:
-
-        {
-            'lyrics': [
-                {
-                    'tokens': ['a', 'b', 'c'],
-                    'author': 'xyz'
+    SCHEMA = {
+        "type": "object",
+        "properties": {"lyrics": {
+            "type": "array",
+            "items": [{
+                "type": "object",
+                "properties": {
+                    "tokens": {
+                        "type": "array",
+                        "items": [{"type": "string"}]
+                        },
+                    "author": {"type": "string"}
                 }
-            ]
-        }
+            }]
+        }}
+    }
 
-        """
+    def __init__(self, source_json):
+
         Loader.__init__(self)
         self.source = source_json
         self.data = self.read_source()
@@ -86,10 +92,12 @@ class JsonLoader(Loader):
         with open(self.source) as f:
             data = json.load(f)
         print('Successfully loaded', self.source)
-        if 'lyrics' in data:
-            return data
+        try:
+            validate(data, self.SCHEMA)
+        except:
+            raise ValueError("JSON didn't validate")
         else:
-            return {}
+            return data
 
     def process_lines(self):
         print(len(self.data['lyrics']), "json objects to process.")
@@ -114,6 +122,7 @@ class JsonLoader(Loader):
                 lyric_id = lyrics.insert(lyric)
                 self.line_chains(tokens)
                 print("Processed:", lyric_id, "--", tokens)
+                break
 
 
 if __name__ == "__main__":

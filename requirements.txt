@@ -1,4 +1,5 @@
 pymongo
+mongomock
 flask
 flask-bootstrap
 twitter

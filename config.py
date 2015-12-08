@@ -6,15 +6,16 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 APP_STATIC = os.path.join(APP_ROOT, 'app', 'static')
 
 class Config:
-    pass
+    OAUTH_TOKEN = os.environ.get('OAUTH_TOKEN')
+    OAUTH_TOKEN_SECRET = os.environ.get('OAUTH_TOKEN_SECRET')
+    CONSUMER_KEY = os.environ.get('CONSUMER_KEY')
+    CONSUMER_SECRET = os.environ.get('CONSUMER_SECRET')
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SECRET_KEY = os.environ.get('SECRET_KEY') or 't0p s3cr3t'
 
 class TestingConfig(Config):
     TESTING = True
-    SECRET_KEY = 'secret'
 
 class ProductionConfig(Config):
     DEBUG = False

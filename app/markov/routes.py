@@ -1,11 +1,10 @@
 __author__ = 'MBK'
 
-import random
 import threading
 from datetime import datetime, timedelta
 from bson.objectid import ObjectId
 from flask import render_template, current_app, make_response, jsonify
-from .models import Lyric
+from .models import Lyric, Stats, RLTweet
 from .loaders import ExampleLoader
 from . import markov, tweet
 from .. import db
@@ -16,9 +15,12 @@ lyrics = db['lyrics']
 
 @markov.route('/')
 def index():
+    lyric = create_lyric()
+
+    stats = Stats().get_json()
     return render_template('markov/index.html',
-                           lyric=create_lyric(),
-                           stats=stats())
+                           lyric=lyric,
+                           stats=stats)
 
 
 @markov.route('/upvote/<lyric_id>', methods=['PUT'])
@@ -71,7 +73,8 @@ def get_new_lyric():
 
 @markov.route('/getStats')
 def get_stats():
-    return make_response(jsonify(stats()), 200)
+    stats = Stats().get_json()
+    return make_response(jsonify(stats), 200)
 
 
 @markov.route('/sitemap.xml', methods=['GET'])
@@ -92,35 +95,14 @@ def sitemap():
     return response
 
 
+def post_tweet(lyric):
+    t = RLTweet(lyric)
+    tweet.post_status(t.get_text())
+
+
 def create_lyric():
     lyric = Lyric()
     lyric_dict = lyric.get_json()
     lyric_id = lyrics.insert(lyric_dict)
     lyric_dict['_id'] = str(lyric_id)
     return lyric_dict
-
-
-def post_tweet(lyric):
-    dope = ('A1', 'Def', 'Dope', 'Fresh To Death', 'Hella Tight',
-            'John Blaze', 'Legit', 'Proper', 'Trump Tight')
-
-    hashtag = ' #' + random.choice(dope).replace(' ', '') + ' #HipHop'
-    tweet.post_status(lyric + hashtag)
-
-
-def stats():
-    ups = sorted([result['timestamp'] for result in db.lyrics.find({'author': 'rap_lyricist', 'upvotes': 1})])
-    downs = sorted([result['timestamp'] for result in db.lyrics.find({'author': 'rap_lyricist', 'downvotes': 1})])
-    num_ups, num_downs = len(ups), len(downs)
-    total = num_ups + num_downs
-    unrounded = (num_ups / total) * 100
-    percentage = round(unrounded, 4)
-    return {
-        'ups': ups,
-        'downs': downs,
-        'upCount': len(ups),
-        'downCount': len(downs),
-        'totalCount': total,
-        'unrounded': unrounded,
-        'percentage': percentage
-    }

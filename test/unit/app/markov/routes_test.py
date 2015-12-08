@@ -1,17 +1,29 @@
 __author__ = 'MBK'
 
 import unittest
+import mongomock
+from datetime import datetime
 from app import create_app
 
 
-class TestIndex(unittest.TestCase):
+class TestStats(unittest.TestCase):
 
     def setUp(self):
-        self.app = create_app('development').test_client()
+        self.app = create_app('testing').test_client()
+        lyrics = mongomock.MongoClient().db.collection
+        objects = [
+            {'author': 'rap_lyricist', 'upvotes': 1},
+            {'author': 'rap_lyricist', 'upvotes': 1},
+            {'author': 'rap_lyricist', 'upvotes': 1},
+            {'author': 'rap_lyricist', 'downvotes': 1},
+            {'author': 'rap_lyricist', 'downvotes': 1},
+            {'author': 'rap_lyricist', 'downvotes': 1},
+            {'author': 'rap_lyricist', 'downvotes': 1}
+        ]
+        for obj in objects:
+            obj['timestamp'] = datetime.utcnow()
+            obj['_id'] = lyrics.insert(obj)
 
-    def test_index(self):
-        response = self.app.get('/')
-        self.assertEqual(200, response.status_code)
 
 if __name__ == '__main__': #pragma: no cover
     unittest.main()

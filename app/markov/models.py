@@ -141,3 +141,41 @@ class Lyric:
             'downvotes': self.downvotes
         }
         return d
+
+
+class Stats:
+
+    def __init__(self):
+        self.ups = sorted([result['timestamp'] for result in db.lyrics.find({'author': 'rap_lyricist', 'upvotes': 1})])
+        self.downs = sorted([result['timestamp'] for result in db.lyrics.find({'author': 'rap_lyricist', 'downvotes': 1})])
+        self.num_ups = len(self.ups)
+        self.num_downs = len(self.downs)
+        self.total = self.num_ups + self.num_downs
+        self.unrounded = (self.num_ups / self.total) * 100
+        self.percentage = round(self.unrounded, 4)
+
+    def get_json(self):
+        return {
+            'ups': self.ups,
+            'downs': self.downs,
+            'upCount': len(self.ups),
+            'downCount': len(self.downs),
+            'totalCount': self.total,
+            'unrounded': self.unrounded,
+            'percentage': self.percentage
+        }
+
+
+class RLTweet:
+
+    POSITIVES = ('A1', 'Def', 'Dope', 'Fresh To Death', 'Hella Tight',
+                 'John Blaze', 'Legit', 'Proper', 'Trump Tight')
+
+    def __init__(self, lyric):
+        self.lyric = lyric
+        self.hashtag = ' #' + random.choice(self.POSITIVES).replace(' ', '') + ' #HipHop'
+        self.rl_tweet = self.lyric + self.hashtag
+
+    def get_text(self):
+        return self.rl_tweet
+

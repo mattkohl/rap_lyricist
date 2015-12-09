@@ -15,9 +15,10 @@ lyrics = db['lyrics']
 
 @markov.route('/')
 def index():
-    lyric = create_lyric()
 
+    lyric = create_lyric()
     stats = Stats().get_json()
+
     return render_template('markov/index.html',
                            lyric=lyric,
                            stats=stats)

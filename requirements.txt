@@ -2,5 +2,6 @@ pymongo
 mongomock
 flask
 flask-bootstrap
+flask-wtf
 twitter
 jsonschema

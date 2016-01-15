@@ -10,6 +10,7 @@ class Config:
     OAUTH_TOKEN_SECRET = os.environ.get('OAUTH_TOKEN_SECRET')
     CONSUMER_KEY = os.environ.get('CONSUMER_KEY')
     CONSUMER_SECRET = os.environ.get('CONSUMER_SECRET')
+    SECRET_KEY = CONSUMER_SECRET
 
 class DevelopmentConfig(Config):
     DEBUG = True

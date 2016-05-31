@@ -11,6 +11,8 @@ class Config:
     CONSUMER_KEY = os.environ.get('CONSUMER_KEY')
     CONSUMER_SECRET = os.environ.get('CONSUMER_SECRET')
     SECRET_KEY = CONSUMER_SECRET
+    BOOTSTRAP_CDN_FORCE_SSL = True
+
 
 class DevelopmentConfig(Config):
     DEBUG = True

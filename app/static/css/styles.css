@@ -158,7 +158,7 @@ a:focus {
 .logo{
     font-family: 'aaaiight-fat', cursive;
     text-transform: none;
-    padding: 15px 15px 8px 15px ;
+    padding: 15px;
     letter-spacing: 5px;
 }
 
@@ -499,6 +499,10 @@ Media Queries Aplenty
 }
 
 @media(max-width:767px) {
+    .logo{
+        padding-top: 8px;
+    }
+
     ul.banner-social-buttons li {
         display: block;
         margin-bottom: 20px;

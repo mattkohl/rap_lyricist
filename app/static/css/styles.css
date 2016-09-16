@@ -8,6 +8,8 @@
 /* 'Rock Salt' */
 @import url(https://fonts.googleapis.com/css?family=Rock+Salt);
 
+@import url(https://fonts.googleapis.com/css?family=Archivo+Black);
+
 body {
     width: 100%;
     height: 100%;
@@ -146,6 +148,33 @@ a:focus {
 
 #tRR a:hover {
     color: #3399FF;
+}
+
+@font-face {
+    font-family: aaaiight-fat;
+    src: url(aaaiight-fat.ttf);
+}
+
+.logo{
+    font-family: 'aaaiight-fat', cursive;
+    text-transform: none;
+    padding: 15px 15px 8px 15px ;
+    letter-spacing: 5px;
+}
+
+#logo {
+    font-size: 30px;
+
+}
+
+#about-logo {
+    font-size: 40px;
+
+}
+
+#footer-logo {
+    font-size: 13px;
+    letter-spacing: 2px;
 }
 
 .wack:hover {

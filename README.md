@@ -12,4 +12,4 @@ That feedback was then applied to the lyric's entry in the database, and used to
 
 ![screen shot](/app/static/img/rap_lyricist_screen_shot_2.png)
 
-If the feedback was `GOOD`, the app would publish the lyric on Twitter as [@rap_lyricist](https://twitter.com/rap_lyricist).
+If the feedback was `DOPE`, the app would publish the lyric on Twitter as [@rap_lyricist](https://twitter.com/rap_lyricist).
